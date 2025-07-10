@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Clientes.css";
+import NovoCliente from "./NovoCliente";
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modoCadastro, setModoCadastro] = useState(false);
+  const [buscaCpf, setBuscaCpf] = useState("");
+  const [clienteParaExcluir, setClienteParaExcluir] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
 
-  useEffect(() => {
+  const buscarClientes = () => {
+    setLoading(true);
     fetch("http://localhost:5000/clientes/clientes")
       .then((res) => res.json())
       .then((data) => setClientes(data))
@@ -15,10 +21,64 @@ function Clientes() {
         setClientes([]);
       })
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    buscarClientes();
   }, []);
 
+  // Filtrar clientes por CPF
+  const clientesFiltrados = clientes.filter((cliente) =>
+    cliente.cpf.replace(/\D/g, "").includes(buscaCpf.replace(/\D/g, ""))
+  );
+  const confirmarExclusao = (cliente) => {
+    setClienteParaExcluir(cliente);
+    setMostrarModal(true);
+  };
+
+  const excluirCliente = () => {
+    if (!clienteParaExcluir) return;
+
+    fetch(`http://localhost:5000/clientes/clientes/${clienteParaExcluir.cpf}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          setClientes(clientes.filter((c) => c.cpf !== clienteParaExcluir.cpf));
+        } else {
+          alert("Erro ao excluir cliente.");
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao excluir:", err);
+        alert("Erro ao excluir cliente.");
+      })
+      .finally(() => {
+        setMostrarModal(false);
+        setClienteParaExcluir(null);
+      });
+  };
   return (
     <div className="gestao-clientes">
+      {mostrarModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h2 className="modal-titulo">Deseja mesmo excluir?</h2>
+            <p className="modal-mensagem">Essa ação não poderá ser desfeita.</p>
+            <div className="botoes-modal">
+              <button
+                onClick={() => setMostrarModal(false)}
+                className="cancelar"
+              >
+                Cancelar
+              </button>
+              <button onClick={excluirCliente} className="confirmar">
+                Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="header">
         <div className="rectangle-2"></div>
 
@@ -71,10 +131,17 @@ function Clientes() {
 
           <div className="barra-superior">
             <div className="pesquisa">
-              <input type="text" placeholder="Pesquisar..." />
+              <input
+                type="text"
+                placeholder="Pesquisar por CPF..."
+                value={buscaCpf}
+                onChange={(e) => setBuscaCpf(e.target.value)}
+              />
               <img src="/search.png" alt="Buscar" />
             </div>
-            <button className="novo-cliente-btn">Novo cliente</button>
+            <Link to="/clientes/novo">
+              <button className="novo-cliente-btn">Novo cliente</button>
+            </Link>
           </div>
         </div>
 
@@ -88,21 +155,28 @@ function Clientes() {
 
           {loading ? (
             <p className="mensagem">Carregando clientes...</p>
-          ) : clientes.length === 0 ? (
-            <p className="mensagem">Nenhum cliente cadastrado.</p>
+          ) : clientesFiltrados.length === 0 ? (
+            <p className="mensagem">Nenhum cliente encontrado.</p>
           ) : (
-            clientes.map((cliente) => (
+            clientesFiltrados.map((cliente) => (
               <div className="linha-cliente" key={cliente.id}>
                 <span>{cliente.nome}</span>
                 <span>{cliente.cpf}</span>
                 <span>{cliente.telefone}</span>
                 <span>{cliente.email}</span>
                 <div className="acoes">
-                  <button className="acao editar">Editar</button>
+                  <Link to={`/clientes/editar/${cliente.cpf}`}>
+                    <button className="acao editar">Editar</button>
+                  </Link>
                   <button className="acao historico">
                     Visualizar Histórico
                   </button>
-                  <button className="acao excluir">Excluir Cliente</button>
+                  <button
+                    className="acao excluir"
+                    onClick={() => confirmarExclusao(cliente)}
+                  >
+                    Excluir Cliente
+                  </button>
                 </div>
               </div>
             ))

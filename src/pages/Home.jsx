@@ -51,16 +51,16 @@ const Home = () => {
 
       {/* BOTÕES DE GESTÃO */}
       <div className="frame-624992">
-        <Link to="/gestao-vendas" className="frame-624988 gestao-botao">
+        <Link to="/vendas" className="frame-624988 gestao-botao">
           Gestão de Vendas
         </Link>
-        <Link to="/gestao-clientes" className="frame-624989 gestao-botao">
+        <Link to="/clientes" className="frame-624989 gestao-botao">
           Gestão de Clientes
         </Link>
-        <Link to="/gestao-vendedores" className="frame-624990 gestao-botao">
+        <Link to="/vendedores" className="frame-624990 gestao-botao">
           Gestão de Vendedores
         </Link>
-        <Link to="/gestao-produtos" className="frame-624991 gestao-botao">
+        <Link to="/produtos" className="frame-624991 gestao-botao">
           Gestão de Produtos
         </Link>
       </div>

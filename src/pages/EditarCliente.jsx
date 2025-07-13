@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import "./EditarCliente.css";
+import "../styles/EditarCliente.css";
 
 function EditarCliente() {
   const navigate = useNavigate();
@@ -123,9 +123,6 @@ function EditarCliente() {
                 Vendas
               </Link>
             </div>
-          </div>
-          <div className="avatar">
-            <img className="image-107" src="/image-107.png" alt="avatar" />
           </div>
         </div>
       </div>

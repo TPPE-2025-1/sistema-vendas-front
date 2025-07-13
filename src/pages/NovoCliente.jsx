@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./NovoCliente.css";
+import "../styles/NovoCliente.css";
 
 function NovoCliente({ onSuccess }) {
   const navigate = useNavigate();
@@ -125,9 +125,6 @@ function NovoCliente({ onSuccess }) {
               </Link>
             </div>
           </div>
-          <div className="avatar">
-            <img className="image-107" src="/image-107.png" alt="avatar" />
-          </div>
         </div>
       </div>
 
@@ -196,7 +193,7 @@ function NovoCliente({ onSuccess }) {
             </div>
 
             <div className="cadastrar-butao">
-              <button type="submit" className="cadastrar-cliente">
+              <button type="submit" className="botao-cadastrar-cliente">
                 Cadastrar Cliente
               </button>
             </div>

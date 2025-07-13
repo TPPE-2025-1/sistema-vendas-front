@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Clientes.css";
-import NovoCliente from "./NovoCliente";
+import "../styles/Clientes.css";
+import VendaDetalhada from "./VendaDetalhada";
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
@@ -116,9 +116,6 @@ function Clientes() {
               </Link>
             </div>
           </div>
-          <div className="avatar">
-            <img className="image-107" src="image-107.png" alt="avatar" />
-          </div>
         </div>
       </div>
 
@@ -168,9 +165,12 @@ function Clientes() {
                   <Link to={`/clientes/editar/${cliente.cpf}`}>
                     <button className="acao editar">Editar</button>
                   </Link>
-                  <button className="acao historico">
-                    Visualizar Histórico
-                  </button>
+                  <Link to={`/clientes/${cliente.cpf}/historico`}>
+                    <button className="acao editar">
+                      Visualizar Histórico
+                    </button>
+                  </Link>
+
                   <button
                     className="acao excluir"
                     onClick={() => confirmarExclusao(cliente)}

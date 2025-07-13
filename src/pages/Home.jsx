@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import "../styles/Home.css";
 
 const Home = () => {
   return (
@@ -42,10 +42,6 @@ const Home = () => {
               </Link>
             </div>
           </div>
-
-          <div className="avatar">
-            <img className="image-107" src="image-107.png" alt="avatar" />
-          </div>
         </div>
       </div>
 
@@ -84,7 +80,7 @@ const Home = () => {
         </div>
 
         {/* BOTÃO DE CADASTRAR NOVA VENDA */}
-        <Link to="/nova-venda" className="frame-6249922 cadastro-botao">
+        <Link to="/vendas/nova" className="frame-6249922 cadastro-botao">
           Cadastrar nova venda
         </Link>
       </div>

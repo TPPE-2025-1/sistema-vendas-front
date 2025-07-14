@@ -34,7 +34,7 @@ function VendaDetalhada({ venda: vendaProp, modoResumido = false }) {
 
   // Modo completo original
   return (
-    <div className="nova-venda">
+    <div className="venda-detalhada">
       {/* Header */}
       <div className="header">
         <div className="rectangle-2"></div>

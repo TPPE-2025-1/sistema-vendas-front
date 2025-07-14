@@ -289,21 +289,10 @@ body {
     inset: 0;
 }
 
-.mask {
-    background: #44aee8;
-    width: 100%;
-    height: 48.63%;
-    position: absolute;
-    right: 0%;
-    left: 0%;
-    bottom: 41.7%;
-    top: 9.67%;
-}
-
 .sl-071322-51620-01 {
     background: linear-gradient( to left, rgba(158, 137, 106, 0.2), rgba(158, 137, 106, 0.2));
     width: 100%;
-    height: 55.63%;
+    height: 50.63%;
     position: absolute;
     left: 0%;
     right: 0%;

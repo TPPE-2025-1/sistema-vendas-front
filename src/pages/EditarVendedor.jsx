@@ -18,7 +18,9 @@ function EditarVendedor() {
 
   // Buscar dados do vendedor pelo CPF
   useEffect(() => {
-    fetch(`http://localhost:5000/vendedores/vendedores/${cpf}`)
+    fetch(
+      `https://sistema-vendas-back.onrender.com/vendedores/vendedores/${cpf}`
+    )
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar vendedor");
         return res.json();
@@ -65,11 +67,14 @@ function EditarVendedor() {
       return;
     }
 
-    fetch(`http://localhost:5000/vendedores/vendedores/${cpf}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    })
+    fetch(
+      `https://sistema-vendas-back.onrender.com/vendedores/vendedores/${cpf}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      }
+    )
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao atualizar vendedor");
         return res.json();

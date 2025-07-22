@@ -11,7 +11,7 @@ function Produtos() {
 
   const buscarProduto = () => {
     setLoading(true);
-    fetch("http://localhost:5000/produtos/produtos")
+    fetch("https://sistema-vendas-back.onrender.com/produtos/produtos")
       .then((res) => res.json())
       .then((data) => setProdutos(data))
       .catch((err) => {
@@ -39,9 +39,12 @@ function Produtos() {
   const excluirProduto = () => {
     if (!produtoParaExcluir) return;
 
-    fetch(`http://localhost:5000/produtos/produtos/${produtoParaExcluir.id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://sistema-vendas-back.onrender.com/produtos/produtos/${produtoParaExcluir.id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => {
         if (res.ok) {
           setProdutos(produtos.filter((c) => c.id !== produtoParaExcluir.id));

@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Clientes.css";
-import VendaDetalhada from "./VendaDetalhada";
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [modoCadastro, setModoCadastro] = useState(false);
   const [buscaCpf, setBuscaCpf] = useState("");
   const [clienteParaExcluir, setClienteParaExcluir] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
 
   const buscarClientes = () => {
     setLoading(true);
-    fetch("http://localhost:5000/clientes/clientes")
+    fetch("https://sistema-vendas-back.onrender.com/clientes/clientes")
       .then((res) => res.json())
       .then((data) => setClientes(data))
       .catch((err) => {
@@ -39,9 +37,12 @@ function Clientes() {
   const excluirCliente = () => {
     if (!clienteParaExcluir) return;
 
-    fetch(`http://localhost:5000/clientes/clientes/${clienteParaExcluir.cpf}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://sistema-vendas-back.onrender.com/clientes/clientes/${clienteParaExcluir.cpf}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => {
         if (res.ok) {
           setClientes(clientes.filter((c) => c.cpf !== clienteParaExcluir.cpf));

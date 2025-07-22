@@ -65,7 +65,7 @@ function NovoProduto({ onSuccess }) {
       estoque: parseInt(form.estoque),
     };
 
-    fetch("http://localhost:5000/produtos/produtos", {
+    fetch("https://sistema-vendas-back.onrender.com/produtos/produtos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(produtoData),

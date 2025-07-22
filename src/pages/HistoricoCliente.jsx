@@ -9,7 +9,9 @@ function HistoricoCliente() {
   const [erro, setErro] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/vendas/vendas/cliente/${cpf}`)
+    fetch(
+      `https://sistema-vendas-back.onrender.com/vendas/vendas/cliente/${cpf}`
+    )
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao buscar vendas");
         return res.json();

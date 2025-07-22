@@ -11,7 +11,7 @@ function Vendedores() {
 
   const buscarVendedores = () => {
     setLoading(true);
-    fetch("http://localhost:5000/vendedores/vendedores")
+    fetch("https://sistema-vendas-back.onrender.com/vendedores/vendedores")
       .then((res) => res.json())
       .then((data) => setVendedores(data))
       .catch((err) => {
@@ -38,7 +38,7 @@ function Vendedores() {
     if (!vendedorParaExcluir) return;
 
     fetch(
-      `http://localhost:5000/vendedores/vendedores/${vendedorParaExcluir.cpf}`,
+      `https://sistema-vendas-back.onrender.com/vendedores/vendedores/${vendedorParaExcluir.cpf}`,
       {
         method: "DELETE",
       }

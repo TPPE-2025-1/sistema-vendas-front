@@ -9,7 +9,7 @@ function VisualizarVendas() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/vendas/vendas")
+    fetch("https://sistema-vendas-back.onrender.com/vendas/vendas")
       .then((res) => res.json())
       .then((data) => setVendas(data))
       .catch((err) => {

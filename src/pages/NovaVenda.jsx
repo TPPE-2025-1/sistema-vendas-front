@@ -22,17 +22,17 @@ function NovaVenda({ onSuccess }) {
 
   // Buscar dados ao carregar
   useEffect(() => {
-    fetch("http://localhost:5000/clientes/clientes")
+    fetch("https://sistema-vendas-back.onrender.com/clientes/clientes")
       .then((res) => res.json())
       .then(setClientes)
       .catch(() => setErro("Erro ao carregar clientes"));
 
-    fetch("http://localhost:5000/vendedores/vendedores")
+    fetch("https://sistema-vendas-back.onrender.com/vendedores/vendedores")
       .then((res) => res.json())
       .then(setVendedores)
       .catch(() => setErro("Erro ao carregar vendedores"));
 
-    fetch("http://localhost:5000/produtos/produtos")
+    fetch("https://sistema-vendas-back.onrender.com/produtos/produtos")
       .then((res) => res.json())
       .then(setProdutos)
       .catch(() => setErro("Erro ao carregar produtos"));
@@ -71,7 +71,7 @@ function NovaVenda({ onSuccess }) {
       quantidade: Number(form.quantidade),
     };
 
-    fetch("http://localhost:5000/vendas/vendas", {
+    fetch("https://sistema-vendas-back.onrender.com/vendas/vendas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dataParaEnviar),

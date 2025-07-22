@@ -18,7 +18,7 @@ function EditarCliente() {
 
   // Buscar dados do cliente pelo CPF
   useEffect(() => {
-    fetch(`http://localhost:5000/clientes/clientes/${cpf}`)
+    fetch(`https://sistema-vendas-back.onrender.com/clientes/clientes/${cpf}`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar cliente");
         return res.json();
@@ -65,7 +65,7 @@ function EditarCliente() {
       return;
     }
 
-    fetch(`http://localhost:5000/clientes/clientes/${cpf}`, {
+    fetch(`https://sistema-vendas-back.onrender.com/clientes/clientes/${cpf}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),

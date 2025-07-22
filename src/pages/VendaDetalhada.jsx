@@ -9,7 +9,7 @@ function VendaDetalhada({ venda: vendaProp, modoResumido = false }) {
 
   useEffect(() => {
     if (!vendaProp && id) {
-      fetch(`http://localhost:5000/vendas/vendas/${id}`)
+      fetch(`https://sistema-vendas-back.onrender.com/vendas/vendas/${id}`)
         .then((res) => {
           if (!res.ok) throw new Error("Venda não encontrada");
           return res.json();

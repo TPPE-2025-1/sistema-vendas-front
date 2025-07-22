@@ -26,7 +26,7 @@ function EditarProduto() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/produtos/produtos/${id}`)
+    fetch(`https://sistema-vendas-back.onrender.com/produtos/produtos/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Erro ao carregar produto");
         return res.json();
@@ -67,7 +67,7 @@ function EditarProduto() {
       return;
     }
 
-    fetch(`http://localhost:5000/produtos/produtos/${id}`, {
+    fetch(`https://sistema-vendas-back.onrender.com/produtos/produtos/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
